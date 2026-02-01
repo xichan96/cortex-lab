@@ -14,7 +14,7 @@ var Env = os.Getenv("CONFIG_ENV")
 
 var Config = &config{}
 
-const ConfigFile = "config.yaml"
+var ConfigFile = "config.yaml"
 
 type config struct {
 	DBDriver string         `json:"db_driver" yaml:"db_driver"`
@@ -23,6 +23,10 @@ type config struct {
 }
 
 func InitConfig() {
+	if envConfigFile := os.Getenv("CONFIG_FILE"); envConfigFile != "" {
+		ConfigFile = envConfigFile
+	}
+
 	if IsInstalled() {
 		data, err := os.ReadFile(ConfigFile)
 		if err == nil {

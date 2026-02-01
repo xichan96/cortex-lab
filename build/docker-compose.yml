@@ -19,6 +19,4 @@ services:
       - CONFIG_ENV=prod
     volumes:
       - ./config.yaml:/go/src/app/config.yaml
-    depends_on:
-      - db
     restart: always

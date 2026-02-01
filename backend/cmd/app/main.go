@@ -19,6 +19,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"log"
 	"net/http"
 	"time"
@@ -39,6 +40,14 @@ import (
 )
 
 func main() {
+	var configFile string
+	flag.StringVar(&configFile, "config", "", "config file path")
+	flag.Parse()
+
+	if configFile != "" {
+		config.ConfigFile = configFile
+	}
+
 	config.InitConfig()
 	config.InitVariable()
 
