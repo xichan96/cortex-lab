@@ -13,6 +13,7 @@ services:
     image: cortex-lab-backend:latest
     environment:
       - CONFIG_ENV=prod
+      - CONFIG_FILE=/go/src/app/config.yaml
     volumes:
       - ./config.docker.yaml:/go/src/app/config.yaml
     restart: always

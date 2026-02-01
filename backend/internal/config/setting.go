@@ -32,8 +32,15 @@ func InitConfig() {
 		if err == nil {
 			if err := yaml.Unmarshal(data, Config); err == nil {
 				return
+			} else {
+				// Print error to stdout/stderr so we can see it in docker logs
+				println("Error unmarshalling config file:", err.Error())
 			}
+		} else {
+			println("Error reading config file:", err.Error())
 		}
+	} else {
+		println("Config file not found:", ConfigFile)
 	}
 
 	Config.DBDriver = getEnv("DB_DRIVER", "mysql")

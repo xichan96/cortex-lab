@@ -19,21 +19,21 @@ const (
 )
 
 type Config struct {
-	Host             string         `json:"host"`
-	Port             int            `json:"port"`
-	User             string         `json:"user"`
-	Password         string         `json:"password"`
-	Database         string         `json:"database"`
-	SlaveHost        string         `json:"slave_host,omitempty"`
-	SlavePort        int            `json:"slave_port,omitempty"`
-	SlaveUser        string         `json:"slave_user,omitempty"`
-	SlavePassword    string         `json:"slave_password,omitempty"`
-	SlaveDatabase    string         `json:"slave_database,omitempty"`
-	MaxOpenConn      int            `json:"max_open_conn,omitempty"`
-	MaxIdleConn      int            `json:"max_idle_conn,omitempty"`
-	MaxIdleTimeSec   int            `json:"max_life_time_sec,omitempty"`
-	LogConfig        *sql.LogConfig `json:"log_config,omitempty"`
-	DisableErrorHook bool           `json:"disable_error_hook,omitempty"`
+	Host             string         `json:"host" yaml:"host"`
+	Port             int            `json:"port" yaml:"port"`
+	User             string         `json:"user" yaml:"user"`
+	Password         string         `json:"password" yaml:"password"`
+	Database         string         `json:"database" yaml:"database"`
+	SlaveHost        string         `json:"slave_host,omitempty" yaml:"slave_host,omitempty"`
+	SlavePort        int            `json:"slave_port,omitempty" yaml:"slave_port,omitempty"`
+	SlaveUser        string         `json:"slave_user,omitempty" yaml:"slave_user,omitempty"`
+	SlavePassword    string         `json:"slave_password,omitempty" yaml:"slave_password,omitempty"`
+	SlaveDatabase    string         `json:"slave_database,omitempty" yaml:"slave_database,omitempty"`
+	MaxOpenConn      int            `json:"max_open_conn,omitempty" yaml:"max_open_conn,omitempty"`
+	MaxIdleConn      int            `json:"max_idle_conn,omitempty" yaml:"max_idle_conn,omitempty"`
+	MaxIdleTimeSec   int            `json:"max_life_time_sec,omitempty" yaml:"max_life_time_sec,omitempty"`
+	LogConfig        *sql.LogConfig `json:"log_config,omitempty" yaml:"log_config,omitempty"`
+	DisableErrorHook bool           `json:"disable_error_hook,omitempty" yaml:"disable_error_hook,omitempty"`
 }
 
 type Client struct {
