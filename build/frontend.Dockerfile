@@ -1,6 +1,7 @@
-FROM node:20-alpine AS build
+FROM m.daocloud.io/docker.io/library/node:20-alpine AS build
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
+RUN npm config set registry https://registry.npmmirror.com
 RUN npm ci --legacy-peer-deps
 RUN npm install react-leaflet leaflet @types/leaflet --legacy-peer-deps
 COPY frontend/ ./
