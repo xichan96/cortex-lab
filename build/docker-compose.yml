@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    build:
-      context: ..
-      dockerfile: build/frontend.Dockerfile
+    image: xichan96/cortex-lab-frontend:latest
     ports:
       - "80:80"
     depends_on:
@@ -12,9 +10,7 @@ services:
     restart: always
 
   backend:
-    build:
-      context: ..
-      dockerfile: build/Dockerfile
+    image: xichan96/cortex-lab-backend:latest
     environment:
       - CONFIG_ENV=prod
     volumes:
