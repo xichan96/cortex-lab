@@ -1,0 +1,168 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --body-bg: #141414;
+  --text-color: rgba(255, 255, 255, 0.85);
+  --text-color-secondary: rgba(255, 255, 255, 0.65);
+  --card-bg: #1f1f1f;
+  --card-border: #303030;
+  --border-color: #303030;
+  --scrollbar-track: #1f1f1f;
+  --scrollbar-thumb: #434343;
+  --scrollbar-thumb-hover: #595959;
+  --header-bg: #1f1f1f;
+  --header-border-bottom: #303030;
+  --sider-bg: #1f1f1f;
+  --sider-border-right: #303030;
+  --item-hover-bg: rgba(255, 255, 255, 0.08);
+  --editor-bg: #1f1f1f;
+  --editor-text: rgba(255, 255, 255, 0.85);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --login-bg: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  --timeline-line-bg: #303030;
+  --status-bg: rgba(255, 255, 255, 0.1);
+  --success-color: #52c41a;
+  --message-user-bg: #1890ff;
+  --message-user-text: #ffffff;
+  --message-agent-bg: rgba(255, 255, 255, 0.04);
+  --code-bg: rgba(255, 255, 255, 0.1);
+  --code-block-bg: #161616;
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --input-shadow: none;
+  --input-border-focus: #3b82f6;
+}
+
+[data-theme='light'] {
+  --body-bg: #ffffff;
+  --text-color: #0f172a;
+  --text-color-secondary: #64748b;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --border-color: #e2e8f0;
+  --scrollbar-track: #f8fafc;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+  --header-bg: #ffffff;
+  --header-border-bottom: #e2e8f0;
+  --sider-bg: #f8fafc;
+  --sider-border-right: #e2e8f0;
+  --item-hover-bg: #f1f5f9;
+  --editor-bg: #ffffff;
+  --editor-text: #0f172a;
+  --shadow-color: rgba(0, 0, 0, 0.06);
+  --login-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --timeline-line-bg: #e2e8f0;
+  --status-bg: rgba(0, 0, 0, 0.04);
+  --code-bg: rgba(0, 0, 0, 0.04);
+  --code-block-bg: #f8fafc;
+  --message-user-bg: #1890ff;
+  --message-user-text: #ffffff;
+  --message-agent-bg: #f8fafc;
+  --success-color: #10b981;
+  --input-bg: #ffffff;
+  --input-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --input-border-focus: #3b82f6;
+}
+
+@layer base {
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  [data-theme='light'] {
+    color-scheme: light;
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  html::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border: 2px solid var(--scrollbar-track);
+    border-radius: 9999px;
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
+  body {
+    background-color: var(--body-bg);
+    color: var(--text-color);
+  }
+}
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}
+
+@layer utilities {
+  @media (max-width: 639px) {
+    .mobile-hidden {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .mobile-only {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .tablet-only {
+      display: block !important;
+    }
+  }
+
+  @media (max-width: 639px), (min-width: 1024px) {
+    .tablet-only {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .desktop-only {
+      display: block !important;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .desktop-only {
+      display: none !important;
+    }
+  }
+
+  /* Safe area for mobile devices with notch/home indicator */
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

@@ -1,0 +1,755 @@
+basePath: /api
+definitions:
+  appdto.CreateIDResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        additionalProperties:
+          type: string
+        type: object
+      msg:
+        type: string
+    type: object
+  appdto.CreateNamespaceReq:
+    properties:
+      description:
+        maxLength: 255
+        minLength: 1
+        type: string
+      name:
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - name
+    type: object
+  appdto.CreatePromptDraftReq:
+    properties:
+      content:
+        minLength: 1
+        type: string
+      description:
+        maxLength: 255
+        minLength: 1
+        type: string
+      name:
+        maxLength: 255
+        minLength: 1
+        type: string
+      namespaceID:
+        type: string
+    required:
+    - content
+    - name
+    type: object
+  appdto.CreateSettingReq:
+    properties:
+      group:
+        maxLength: 64
+        minLength: 1
+        type: string
+      key:
+        maxLength: 64
+        minLength: 1
+        type: string
+      value:
+        type: string
+    required:
+    - group
+    - key
+    - value
+    type: object
+  appdto.CreateUserReq:
+    properties:
+      password:
+        maxLength: 255
+        minLength: 1
+        type: string
+      role:
+        maxLength: 255
+        minLength: 1
+        type: string
+      username:
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - password
+    - role
+    - username
+    type: object
+  appdto.DeleteSettingReq:
+    properties:
+      group:
+        maxLength: 64
+        minLength: 1
+        type: string
+      key:
+        maxLength: 64
+        minLength: 1
+        type: string
+    required:
+    - group
+    - key
+    type: object
+  appdto.EmptyResponse:
+    properties:
+      code:
+        type: integer
+      msg:
+        type: string
+    type: object
+  appdto.GetSettingReq:
+    properties:
+      group:
+        maxLength: 64
+        minLength: 1
+        type: string
+      key:
+        maxLength: 64
+        minLength: 1
+        type: string
+    required:
+    - group
+    - key
+    type: object
+  appdto.Namespace:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  appdto.NamespaceListResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/appdto.Namespace'
+        type: array
+      msg:
+        type: string
+    type: object
+  appdto.Prompt:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      namespace_id:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  appdto.PromptListResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/appdto.Prompt'
+        type: array
+      msg:
+        type: string
+    type: object
+  appdto.PromptResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/appdto.Prompt'
+      msg:
+        type: string
+    type: object
+  appdto.Setting:
+    properties:
+      created_at:
+        type: string
+      group:
+        type: string
+      key:
+        type: string
+      updated_at:
+        type: string
+      value:
+        type: string
+    type: object
+  appdto.SettingListResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/appdto.Setting'
+        type: array
+      msg:
+        type: string
+    type: object
+  appdto.SettingResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/appdto.Setting'
+      msg:
+        type: string
+    type: object
+  appdto.UpdateNamespaceReq:
+    properties:
+      description:
+        maxLength: 255
+        minLength: 1
+        type: string
+      id:
+        type: string
+      name:
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - id
+    type: object
+  appdto.UpdatePromptDraftReq:
+    properties:
+      content:
+        minLength: 1
+        type: string
+      description:
+        maxLength: 255
+        minLength: 1
+        type: string
+      id:
+        type: string
+    type: object
+  appdto.UpdateSettingReq:
+    properties:
+      group:
+        maxLength: 64
+        minLength: 1
+        type: string
+      key:
+        maxLength: 64
+        minLength: 1
+        type: string
+      value:
+        type: string
+    required:
+    - group
+    - key
+    - value
+    type: object
+  appdto.UpdateUserReq:
+    properties:
+      id:
+        maxLength: 255
+        minLength: 1
+        type: string
+      password:
+        maxLength: 255
+        minLength: 1
+        type: string
+      role:
+        maxLength: 255
+        minLength: 1
+        type: string
+      username:
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - id
+    type: object
+  appdto.User:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  appdto.UserListResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/appdto.User'
+        type: array
+      msg:
+        type: string
+    type: object
+host: localhost:8088
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Prompt Hub API 文档
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Prompt Hub API
+  version: "1.0"
+paths:
+  /api/namespaces:
+    get:
+      consumes:
+      - application/json
+      description: 获取所有命名空间列表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/appdto.NamespaceListResponse'
+      summary: 获取命名空间列表
+      tags:
+      - 命名空间管理
+    post:
+      consumes:
+      - application/json
+      description: 创建新命名空间
+      parameters:
+      - description: 命名空间信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.CreateNamespaceReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/appdto.CreateIDResponse'
+      summary: 创建命名空间
+      tags:
+      - 命名空间管理
+  /api/namespaces/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 删除指定命名空间
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 删除命名空间
+      tags:
+      - 命名空间管理
+    put:
+      consumes:
+      - application/json
+      description: 更新命名空间信息
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 命名空间信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.UpdateNamespaceReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 更新命名空间
+      tags:
+      - 命名空间管理
+  /api/namespaces/:namespace_id/prompts:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定命名空间和名称下的提示词列表
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: namespace_id
+        required: true
+        type: string
+      - description: 提示词名称
+        in: query
+        name: name
+        type: string
+      - description: 状态
+        in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/appdto.PromptListResponse'
+      summary: 获取提示词列表
+      tags:
+      - 提示词管理
+    post:
+      consumes:
+      - application/json
+      description: 在指定命名空间下创建新提示词
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: namespace_id
+        required: true
+        type: string
+      - description: 提示词信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.CreatePromptDraftReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/appdto.CreateIDResponse'
+      summary: 创建提示词
+      tags:
+      - 提示词管理
+  /api/namespaces/:namespace_id/prompts/:prompt_id:
+    delete:
+      consumes:
+      - application/json
+      description: 删除指定提示词
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: namespace_id
+        required: true
+        type: string
+      - description: 提示词ID
+        in: path
+        name: prompt_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 删除提示词
+      tags:
+      - 提示词管理
+    get:
+      consumes:
+      - application/json
+      description: 根据ID获取提示词
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: namespace_id
+        required: true
+        type: string
+      - description: 提示词ID
+        in: path
+        name: prompt_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/appdto.PromptResponse'
+      summary: 获取提示词
+      tags:
+      - 提示词管理
+    put:
+      consumes:
+      - application/json
+      description: 更新提示词信息
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: namespace_id
+        required: true
+        type: string
+      - description: 提示词ID
+        in: path
+        name: prompt_id
+        required: true
+        type: string
+      - description: 提示词信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.UpdatePromptDraftReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 更新提示词
+      tags:
+      - 提示词管理
+  /api/namespaces/:namespace_id/prompts/:prompt_id/publish:
+    post:
+      consumes:
+      - application/json
+      description: 发布指定提示词
+      parameters:
+      - description: 命名空间ID
+        in: path
+        name: namespace_id
+        required: true
+        type: string
+      - description: 提示词ID
+        in: path
+        name: prompt_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 发布成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 发布提示词
+      tags:
+      - 提示词管理
+  /api/settings:
+    delete:
+      consumes:
+      - application/json
+      description: 删除指定配置项
+      parameters:
+      - description: 配置信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.DeleteSettingReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 删除配置
+      tags:
+      - 配置管理
+    get:
+      consumes:
+      - application/json
+      description: 根据分组获取配置列表
+      parameters:
+      - description: 配置分组
+        in: query
+        name: group
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/appdto.SettingListResponse'
+      summary: 获取配置列表
+      tags:
+      - 配置管理
+    post:
+      consumes:
+      - application/json
+      description: 创建新配置项
+      parameters:
+      - description: 配置信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.CreateSettingReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 创建配置
+      tags:
+      - 配置管理
+    put:
+      consumes:
+      - application/json
+      description: 更新配置项
+      parameters:
+      - description: 配置信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.UpdateSettingReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 更新配置
+      tags:
+      - 配置管理
+  /api/settings/get:
+    post:
+      consumes:
+      - application/json
+      description: 获取指定配置项
+      parameters:
+      - description: 配置查询信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.GetSettingReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/appdto.SettingResponse'
+      summary: 获取配置
+      tags:
+      - 配置管理
+  /api/users:
+    get:
+      consumes:
+      - application/json
+      description: 获取所有用户列表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 获取成功
+          schema:
+            $ref: '#/definitions/appdto.UserListResponse'
+      summary: 获取用户列表
+      tags:
+      - 用户管理
+    post:
+      consumes:
+      - application/json
+      description: 创建新用户
+      parameters:
+      - description: 用户信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.CreateUserReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 创建成功
+          schema:
+            $ref: '#/definitions/appdto.CreateIDResponse'
+      summary: 创建用户
+      tags:
+      - 用户管理
+  /api/users/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 删除指定用户
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 删除成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 删除用户
+      tags:
+      - 用户管理
+    put:
+      consumes:
+      - application/json
+      description: 更新用户信息
+      parameters:
+      - description: 用户ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 用户信息
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/appdto.UpdateUserReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/appdto.EmptyResponse'
+      summary: 更新用户
+      tags:
+      - 用户管理
+schemes:
+- http
+- https
+swagger: "2.0"

@@ -1,0 +1,24 @@
+db_driver: sqlite
+mysql:
+    host: 127.0.0.1
+    port: 3306
+    user: root
+    password: youpasswd
+    database: cortex_lab
+    slavehost: ""
+    slaveport: 0
+    slaveuser: ""
+    slavepassword: ""
+    slavedatabase: ""
+    maxopenconn: 0
+    maxidleconn: 0
+    maxidletimesec: 0
+    logconfig: null
+    disableerrorhook: false
+sqlite:
+    path: cortex_lab.db
+    maxopenconn: 0
+    maxidleconn: 0
+    maxidletimesec: 0
+    logconfig: null
+    disableerrorhook: false
