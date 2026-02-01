@@ -14,5 +14,19 @@ services:
     environment:
       - CONFIG_ENV=prod
     volumes:
-      - ./config.yaml:/go/src/app/config.yaml
+      - ./config.docker.yaml:/go/src/app/config.yaml
+    depends_on:
+      - db
     restart: always
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: youpasswd
+      MYSQL_DATABASE: cortex_lab
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  db_data:

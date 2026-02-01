@@ -29,7 +29,8 @@ type app struct {
 
 func NewApp(kp persist.ExperiencePersistIer, rkrp persist.RoleExperienceRelationPersistIer) AppIer {
 	var seg gse.Segmenter
-	seg.LoadDict()
+	// Use embedded dictionary to avoid file path issues in Docker
+	seg.LoadDictEmbed()
 	return &app{kp: kp, rkrp: rkrp, seg: seg}
 }
 
