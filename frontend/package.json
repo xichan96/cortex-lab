@@ -25,6 +25,7 @@
     "dayjs": "^1.11.10",
     "katex": "^0.16.27",
     "lucide-react": "^0.562.0",
+    "monaco-editor": "^0.45.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
