@@ -1,6 +1,6 @@
 db_driver: mysql
 mysql:
-    host: db
+    host: host.docker.internal
     port: 3306
     user: root
     password: youpasswd
