@@ -17,28 +17,8 @@ services:
       dockerfile: build/Dockerfile
     environment:
       - CONFIG_ENV=prod
-      - DB_DRIVER=mysql
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_USER=cortex
-      - DB_PASSWORD=cortex_secret
-      - DB_NAME=cortex_lab
+    volumes:
+      - ./config.yaml:/go/src/app/config.yaml
     depends_on:
       - db
     restart: always
-
-  db:
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=root_secret
-      - MYSQL_DATABASE=cortex_lab
-      - MYSQL_USER=cortex
-      - MYSQL_PASSWORD=cortex_secret
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
-
-volumes:
-  db_data:
