@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: xichan96/cortex-lab-frontend:latest
+    image: cortex-lab-frontend:latest
     ports:
       - "80:80"
     depends_on:
@@ -10,7 +10,7 @@ services:
     restart: always
 
   backend:
-    image: xichan96/cortex-lab-backend:latest
+    image: cortex-lab-backend:latest
     environment:
       - CONFIG_ENV=prod
     volumes:
