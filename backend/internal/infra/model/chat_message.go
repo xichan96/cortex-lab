@@ -20,9 +20,9 @@ type ChatMessage struct {
 	Role      string         `json:"role" gorm:"column:role;type:varchar(50);not null;comment:消息角色"`
 	Content   string         `json:"content" gorm:"column:content;type:text;not null;comment:消息内容 (Markdown/纯文本)"`
 	Meta      *MessageMeta   `json:"meta" gorm:"column:meta;type:text;comment:附加元信息 (如工具调用、token 统计等)"`
-	CreatedAt time.Time      `json:"created_at" gorm:"column:created_at;type:timestamp;not null;autoCreateTime"`
-	UpdatedAt time.Time      `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;autoUpdateTime"`
-	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at;type:timestamp;index;comment:软删除时间"`
+	CreatedAt time.Time      `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoCreateTime;index:idx_session_created_at"`
+	UpdatedAt time.Time      `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoUpdateTime"`
+	DeletedAt gorm.DeletedAt `json:"deleted_at,omitempty" gorm:"column:deleted_at;type:timestamp NULL;index;comment:软删除时间"`
 }
 
 func (ChatMessage) TableName() string {

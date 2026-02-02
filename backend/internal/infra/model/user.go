@@ -19,9 +19,9 @@ type User struct {
 	PasswordHash string         `json:"password_hash" gorm:"column:password_hash;type:varchar(128);not null;comment:密码哈希"`
 	Role         string         `json:"role" gorm:"column:role;type:varchar(20);not null;default:'user';comment:角色"`
 	AvatarURL    string         `json:"avatar_url" gorm:"column:avatar_url;type:varchar(255);comment:头像地址"`
-	CreatedAt    time.Time      `json:"created_at" gorm:"column:created_at;type:timestamp;not null;autoCreateTime;comment:创建时间"`
-	UpdatedAt    time.Time      `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;autoUpdateTime;comment:更新时间"`
-	DeletedAt    gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at;type:timestamp;index;comment:软删除时间"`
+	CreatedAt    time.Time      `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoCreateTime;comment:创建时间"`
+	UpdatedAt    time.Time      `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoUpdateTime;comment:更新时间"`
+	DeletedAt    gorm.DeletedAt `json:"deleted_at,omitempty" gorm:"column:deleted_at;type:timestamp NULL;index;comment:软删除时间"`
 }
 
 func (User) TableName() string {

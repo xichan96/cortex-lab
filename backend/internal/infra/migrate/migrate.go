@@ -54,8 +54,8 @@ func EnsureDatabase() error {
 	return nil
 }
 
-func MigrateTable() {
-	config.Var.DB.AutoMigrate(
+func MigrateTable() error {
+	if err := config.Var.DB.AutoMigrate(
 		&model.User{},
 		&model.Role{},
 		&model.Experience{},
@@ -63,12 +63,18 @@ func MigrateTable() {
 		&model.Setting{},
 		&model.ChatSession{},
 		&model.ChatMessage{},
-	)
+	); err != nil {
+		fmt.Printf("AutoMigrate failed: %v\n", err)
+		return err
+	}
+	return nil
 }
 
 func Run() {
 	if err := EnsureDatabase(); err != nil {
 		panic(err)
 	}
-	MigrateTable()
+	if err := MigrateTable(); err != nil {
+		panic(err)
+	}
 }

@@ -28,9 +28,9 @@ type Experience struct {
 	Tags       string         `json:"tags" gorm:"column:tags;type:json;comment:标签列表 (JSON Array)"`
 	UsageCount int64          `json:"usage_count" gorm:"column:usage_count;type:bigint;not null;default:0;comment:引用/使用次数"`
 	CreatedBy  string         `json:"created_by" gorm:"column:created_by;type:varchar(36);not null;comment:创建人ID"`
-	CreatedAt  time.Time      `json:"created_at" gorm:"column:created_at;type:timestamp;not null;autoCreateTime"`
-	UpdatedAt  time.Time      `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;autoUpdateTime"`
-	DeletedAt  gorm.DeletedAt `json:"deleted_at" gorm:"column:deleted_at;type:timestamp;index;comment:软删除时间"`
+	CreatedAt  time.Time      `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoCreateTime"`
+	UpdatedAt  time.Time      `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoUpdateTime"`
+	DeletedAt  gorm.DeletedAt `json:"deleted_at,omitempty" gorm:"column:deleted_at;type:timestamp NULL;index;comment:软删除时间"`
 }
 
 func (Experience) TableName() string {
@@ -57,7 +57,7 @@ type ExperienceFieldMeta struct {
 type RoleExperienceRelation struct {
 	RoleID       string    `json:"role_id" gorm:"column:role_id;type:varchar(36);primaryKey;comment:角色ID"`
 	ExperienceID string    `json:"experience_id" gorm:"column:experience_id;type:varchar(36);primaryKey;index;comment:经验ID"`
-	CreatedAt    time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;autoCreateTime"`
+	CreatedAt    time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoCreateTime"`
 }
 
 func (RoleExperienceRelation) TableName() string {

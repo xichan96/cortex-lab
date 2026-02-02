@@ -62,7 +62,9 @@ func main() {
 	if err := migrate.EnsureDatabase(); err != nil {
 		panic(err)
 	}
-	migrate.MigrateTable()
+	if err := migrate.MigrateTable(); err != nil {
+		panic(err)
+	}
 
 	initAdminUser()
 	initLLMSetting()

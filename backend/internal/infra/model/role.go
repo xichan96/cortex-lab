@@ -22,8 +22,8 @@ type Role struct {
 	Permissions string    `json:"permissions" gorm:"column:permissions;type:json;comment:权限范围定义 (JSON Array)"`
 	CreatorID   string    `json:"creator_id" gorm:"column:creator_id;type:varchar(36);not null;index;comment:创建者ID"`
 	IsPublic    int       `json:"is_public" gorm:"column:is_public;type:tinyint(1);not null;default:0;comment:是否公开 (0:私有, 1:公开)"`
-	CreatedAt   time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;autoCreateTime;comment:创建时间"`
-	UpdatedAt   time.Time `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;autoUpdateTime;comment:更新时间"`
+	CreatedAt   time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoCreateTime;comment:创建时间"`
+	UpdatedAt   time.Time `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoUpdateTime;comment:更新时间"`
 }
 
 func (Role) TableName() string {

@@ -19,8 +19,8 @@ type ChatSession struct {
 	Provider  string    `json:"provider" gorm:"column:provider;type:varchar(64);not null;comment:模型提供商 (不可变)"`
 	ModelName string    `json:"model_name" gorm:"column:model_name;type:varchar(128);not null;comment:模型名称 (不可变)"`
 	Title     *string   `json:"title" gorm:"column:title;type:varchar(255);comment:会话标题 (模型异步总结)"`
-	CreatedAt time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;autoCreateTime"`
-	UpdatedAt time.Time `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;autoUpdateTime"`
+	CreatedAt time.Time `json:"created_at" gorm:"column:created_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoCreateTime"`
+	UpdatedAt time.Time `json:"updated_at" gorm:"column:updated_at;type:timestamp;not null;default:CURRENT_TIMESTAMP;autoUpdateTime"`
 }
 
 func (ChatSession) TableName() string {
