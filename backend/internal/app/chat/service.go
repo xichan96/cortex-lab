@@ -2,7 +2,6 @@ package chat
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"time"
 
@@ -172,7 +171,13 @@ func (a *app) SendMessage(ctx context.Context, roleID, provider, modelName, sess
 			return "", nil, gorm.ErrRecordNotFound
 		}
 		if session.RoleID != roleID || session.Provider != provider || session.ModelName != modelName {
-			return "", nil, errors.New("session role/provider/model mismatch")
+			// update session role/provider/model
+			session.RoleID = roleID
+			session.Provider = provider
+			session.ModelName = modelName
+			if err := a.sp.Update(ctx, session); err != nil {
+				return "", nil, err
+			}
 		}
 		finalSessionID = sessionID
 	}
@@ -378,7 +383,13 @@ func (a *app) PrepareStreamMessage(ctx context.Context, roleID, provider, modelN
 			return "", nil, gorm.ErrRecordNotFound
 		}
 		if session.RoleID != roleID || session.Provider != provider || session.ModelName != modelName {
-			return "", nil, errors.New("session role/provider/model mismatch")
+			// update session role/provider/model
+			session.RoleID = roleID
+			session.Provider = provider
+			session.ModelName = modelName
+			if err := a.sp.Update(ctx, session); err != nil {
+				return "", nil, err
+			}
 		}
 		finalSessionID = sessionID
 	}
